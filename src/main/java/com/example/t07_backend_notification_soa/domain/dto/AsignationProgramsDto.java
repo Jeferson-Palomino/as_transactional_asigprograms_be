@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -15,6 +16,9 @@ public class AsignationProgramsDto {
     private Integer id;
     private Integer id_programs;
     private Integer id_activities;
-    private Date date_asignation;
+    private LocalDate date_asignation;
     private String direction;
+    private  String name_programs;
+    private String name_activities;
+    private String active;
 }

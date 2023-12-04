@@ -1,8 +1,7 @@
 package com.example.t07_backend_notification_soa.service.impl;
 
-import com.example.t07_backend_notification_soa.domain.dto.ActivitiesDto;
-import com.example.t07_backend_notification_soa.domain.dto.ProgramsDto;
-import com.example.t07_backend_notification_soa.domain.model.AsignationPrograms;
+import com.example.t07_backend_notification_soa.domain.dto.*;
+import com.example.t07_backend_notification_soa.domain.mapper.AsignacionProgramsMapper;
 import com.example.t07_backend_notification_soa.exception.NotFoundException;
 import com.example.t07_backend_notification_soa.repository.AsignationProgramsRepository;
 import com.example.t07_backend_notification_soa.service.AsignationProgramsService;
@@ -11,22 +10,72 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.example.t07_backend_notification_soa.domain.mapper.AsignacionProgramsMapper.toModel;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class AsignationProgramsServiceImpl implements AsignationProgramsService {
     private final AsignationProgramsRepository asignationProgramsRepository;
     @Override
-    public AsignationPrograms create(AsignationPrograms asignationPrograms) {
-        return asignationProgramsRepository.save(asignationPrograms);
+    public Mono<Void> create(ProgramsBulkDto dto) {
+        List<Mono<Void>> saveMonos = dto.getId_activities().stream()
+                .map(res -> {
+                    AsignationProgramsResponseDto asignacion = AsignationProgramsResponseDto.builder()
+                            .id_programs(dto.getId_programs())
+                            .id_activities(res.getId_activities())
+                            .direction(dto.getDirection())
+                            .date_asignation(dto.getDate_asignation())
+                            .build();
+                    return asignationProgramsRepository.save(toModel(asignacion)).then();
+                })
+                .collect(Collectors.toList());
+
+        return Mono.when(saveMonos);
+    }
+
+
+    @Override
+    public Flux<AsignationProgramsResponseDto> listAsignation() {
+        return asignationProgramsRepository.findAll()
+                .map(AsignacionProgramsMapper::toDtoAsignation);
     }
 
     @Override
-    public List<AsignationPrograms> listAsignation() {
-        return (List<AsignationPrograms>) asignationProgramsRepository.findAll();
+    public Mono<AsignationProgramsResponseDto> update(Integer id, AsignationProgramsDto request) {
+        return this.asignationProgramsRepository.findById(id)
+                .switchIfEmpty(Mono.error(new NotFoundException(("El id: " + id + " no fue encontrado"))))
+                .flatMap(asignation -> asignationProgramsRepository.save(toModel(asignation.getId(),request)))
+                .map(AsignacionProgramsMapper::toDtoAsignation);
+    }
+
+    @Override
+    public Mono<Void> delete(Integer id) {
+        return asignationProgramsRepository.findById(id)
+                .switchIfEmpty(Mono.error(new NotFoundException(("El id: " + id + " no fue encontrado"))))
+                .flatMap(asignation -> {
+                    asignation.setActive("I");
+                    return asignationProgramsRepository.save(asignation);
+                })
+                .doOnSuccess(unused -> log.info("Se elimino el usuario con id: {}" ,id))
+                .then();
+    }
+
+    @Override
+    public Mono<AsignationProgramsResponseDto> activar(Integer id) {
+        return asignationProgramsRepository.findById(id)
+                .switchIfEmpty(Mono.error(new NotFoundException(("El id: " + id + " no fue encontrado"))))
+                .flatMap(asignation -> {
+                    asignation.setActive("A");
+                    return asignationProgramsRepository.save(asignation);
+                })
+                .map(AsignacionProgramsMapper::toDtoAsignation);
     }
 
     @Override
@@ -57,5 +106,9 @@ public class AsignationProgramsServiceImpl implements AsignationProgramsService 
         }else {
             throw new NotFoundException("funcionario no existente");
         }
+    }
+
+    public Flux<AsignationProgramsResponseDto> listarPorEstado(String active) {
+        return asignationProgramsRepository.findByActive(active);
     }
 }

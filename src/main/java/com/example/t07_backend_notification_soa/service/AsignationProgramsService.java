@@ -1,15 +1,18 @@
 package com.example.t07_backend_notification_soa.service;
 
-import com.example.t07_backend_notification_soa.domain.dto.ActivitiesDto;
-import com.example.t07_backend_notification_soa.domain.dto.ProgramsDto;
+import com.example.t07_backend_notification_soa.domain.dto.*;
 import com.example.t07_backend_notification_soa.domain.model.AsignationPrograms;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 public interface AsignationProgramsService {
-    AsignationPrograms create(AsignationPrograms asignationPrograms);
-    List<AsignationPrograms> listAsignation();
+    Mono<Void> create(ProgramsBulkDto dto);
+    Flux<AsignationProgramsResponseDto> listAsignation();
+    Mono<AsignationProgramsResponseDto> update(Integer id , AsignationProgramsDto request);
+    Mono<Void> delete(Integer id);
+    Mono<AsignationProgramsResponseDto> activar(Integer id);
     public Mono<ProgramsDto> validarPrograma(Integer id);
     public Mono<ActivitiesDto> validarActividades(Integer id);
+
+    Flux<AsignationProgramsResponseDto> listarPorEstado(String activo);
 }
