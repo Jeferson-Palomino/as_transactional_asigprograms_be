@@ -2,7 +2,5 @@
 p	java:S116"VRename this field "id_programs" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—«çÏüÿÿÿÿ
 r	java:S116"XRename this field "id_activities" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ˆž¯ÿÿÿÿÿ
 o	java:S116"ZRename this field "date_asignation" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³š¢â
-y	java:S116"XRename this field "name_programs" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ž´éÎûÿÿÿÿ8¦Š¹ŽÃ1
-{	java:S116"ZRename this field "name_activities" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’ÑÈ©úÿÿÿÿ8¦Š¹ŽÃ1
 H
 java:S1128	"+Remove this unused import 'java.util.Date'.(¸…¼ü8ø§¤‘Ã1

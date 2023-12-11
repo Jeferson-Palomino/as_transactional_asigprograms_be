@@ -18,7 +18,5 @@ public class AsignationProgramsDto {
     private Integer id_activities;
     private LocalDate date_asignation;
     private String direction;
-    private  String name_programs;
-    private String name_activities;
     private String active;
 }

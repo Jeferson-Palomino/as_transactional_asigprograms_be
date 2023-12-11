@@ -11,12 +11,10 @@ public class AsignacionProgramsMapper {
     public static AsignationPrograms toModel(AsignationProgramsResponseDto dto) {
         return new AsignationPrograms(
                 dto.getId(),
-                dto.getId_activities(),
                 dto.getId_programs(),
+                dto.getId_activities(),
                 dto.getDate_asignation(),
                 dto.getDirection(),
-                dto.getName_programs(),
-                dto.getName_activities(),
                 dto.getActive()
         );
     }
@@ -27,8 +25,6 @@ public class AsignacionProgramsMapper {
                 dto.getId_programs(),
                 dto.getDate_asignation(),
                 dto.getDirection(),
-                dto.getName_programs(),
-                dto.getName_activities(),
                 dto.getActive()
         );
     }
@@ -39,8 +35,6 @@ public class AsignacionProgramsMapper {
                 dto.getId_programs(),
                 dto.getDate_asignation(),
                 dto.getDirection(),
-                dto.getName_programs(),
-                dto.getName_activities(),
                 dto.getActive()
         );
     }

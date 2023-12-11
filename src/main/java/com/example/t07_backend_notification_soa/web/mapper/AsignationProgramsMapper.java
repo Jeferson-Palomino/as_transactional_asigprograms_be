@@ -46,8 +46,6 @@ public class AsignationProgramsMapper {
         asignation.setDate_asignation(asignationProgramsDto.getDate_asignation());
         asignation.setDirection(asignationProgramsDto.getDirection());
         asignation.setActive("A");
-        asignation.setName_programs(programsDto.getName());
-        asignation.setName_activities(activitiesDto.getName());
         return  asignation;
     }
 }

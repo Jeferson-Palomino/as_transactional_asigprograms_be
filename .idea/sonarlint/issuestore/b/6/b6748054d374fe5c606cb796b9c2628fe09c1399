@@ -1,9 +1,21 @@
 
+Š
+java:S1192A"hDefine a constant instead of duplicating this literal "http://localhost:8085/v1/programs/find/" 3 times.(‡ÇĞİşÿÿÿÿ8äØ¹Å1
+€
+java:S1192G"^Define a constant instead of duplicating this literal "http://localhost:8084/ms-soa/" 3 times.(‚Ì®Üüÿÿÿÿ8åØ¹Å1
 u
-java:S1192&"SDefine a constant instead of duplicating this literal " no fue encontrado" 3 times.(•·¡ÿÿÿÿÿ8™‘˜Ã1
+java:S1192\"SDefine a constant instead of duplicating this literal " no fue encontrado" 3 times.(•·¡ÿÿÿÿÿ8åØ¹Å1
 j
-java:S1192&"HDefine a constant instead of duplicating this literal "El id: " 3 times.(•·¡ÿÿÿÿÿ8š‘˜Ã1
+java:S1192\"HDefine a constant instead of duplicating this literal "El id: " 3 times.(•·¡ÿÿÿÿÿ8æØ¹Å1
+…
+java:S1319Ç"gThe type of "parameters" should be an interface such as "Map" rather than the implementation "HashMap".(ı”ŞÔ8èØ¹Å1
+o
+java:S62045"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹8’Ø¹Å1
 R
-java:S1874G"0Remove this use of "exchange"; it is deprecated.(–çì¨ÿÿÿÿÿ8ª‘˜Ã1
-R
-java:S1874V"0Remove this use of "exchange"; it is deprecated.(–çì¨ÿÿÿÿÿ8®‘˜Ã1
+java:S1874}"0Remove this use of "exchange"; it is deprecated.(–çì¨ÿÿÿÿÿ8´’Ø¹Å1
+S
+java:S1874Œ"0Remove this use of "exchange"; it is deprecated.(–çì¨ÿÿÿÿÿ8¹’Ø¹Å1
+Q
+java:S1611™"3Remove the parentheses around the "activ" parameter(•¦‡µ8¾’Ø¹Å1
+J
+java:S1905Ö"'Remove this unnecessary cast to "long".(×¨­ìüÿÿÿÿ8ä’Ø¹Å1

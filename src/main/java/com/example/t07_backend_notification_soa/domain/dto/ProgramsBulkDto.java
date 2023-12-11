@@ -12,7 +12,7 @@ import java.util.List;
 @ToString
 public class ProgramsBulkDto {
     private Integer id_programs;
-    private List<ProgramsAsignationDto> id_activities;
+    private List<ProgramsAsignationDto> activities;
     private LocalDate date_asignation;
     private String direction;
     @Getter

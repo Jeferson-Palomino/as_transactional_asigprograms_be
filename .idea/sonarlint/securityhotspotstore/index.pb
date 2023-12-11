@@ -25,3 +25,11 @@ dsrc/main/java/com/example/t07_backend_notification_soa/domain/dto/AsignationPro
 _src/main/java/com/example/t07_backend_notification_soa/web/mapper/AsignationProgramsMapper.java,8\4\847e28bcac58ed09d7db80e71cd68af5d20ea6fd
 ñ
 fsrc/main/java/com/example/t07_backend_notification_soa/service/impl/AsignationProgramsServiceImpl.java,b\6\b6748054d374fe5c606cb796b9c2628fe09c1399
+Ü
+Vsrc/main/java/com/example/t07_backend_notification_soa/domain/dto/ProgramsBulkDto.java,5\5\55aceda799a9a85790b3a67e71942a69ebd4daba
+ê
+`src/main/java/com/example/t07_backend_notification_soa/domain/dto/AsignationProgramsListDto.java,4\4\4456319017ed8b21e14e47f4127e2416b0655cbc
+ä
+Zsrc/main/java/com/example/t07_backend_notification_soa/MsOrdenDemosesion01Application.java,6\a\6a6d912ecc3355311d71c3007dcb533e87f08737
+ï
+esrc/main/java/com/example/t07_backend_notification_soa/domain/report/AsignationProgramsReportDto.java,e\5\e5b5661faa4a153617f188e7ea3153c556044da2
