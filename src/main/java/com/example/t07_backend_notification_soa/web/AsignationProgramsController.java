@@ -61,10 +61,13 @@ public class AsignationProgramsController {
     }
     @CrossOrigin(origins="http://localhost:4200")
     @GetMapping("/{activo}")
-    public Flux<AsignationProgramsListDto> listarPorEstado(@PathVariable String activo) {
+    public Flux<AsignationProgramsReportDto> listarPorEstado(@PathVariable String activo) {
         return asignationProgramsService.listarPorEstado(activo);
     }
 
-    @GetMapping("/report")
-    public Mono<ResponseEntity<Resource>> exportAsignationPrograms(){return asignationProgramsServiceImpl.exportAsignationReport();}
+    @CrossOrigin(origins="http://localhost:4200")
+    @GetMapping("/report/{nameprograms}")
+    public Mono<ResponseEntity<Resource>> exportAsignationPrograms(@PathVariable String nameprograms){
+        return asignationProgramsServiceImpl.exportAsignationReport(nameprograms);
+    }
 }

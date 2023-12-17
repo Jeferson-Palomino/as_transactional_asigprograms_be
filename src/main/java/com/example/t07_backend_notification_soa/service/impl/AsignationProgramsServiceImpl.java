@@ -24,6 +24,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -76,6 +77,8 @@ public class AsignationProgramsServiceImpl implements AsignationProgramsService 
                 ActivitiesDto activitiesDto = data.getT2();
                 AsignationProgramsReportDto asignationProgramsReportDto = new AsignationProgramsReportDto();
                 asignationProgramsReportDto.setId(dataasugnation.getId());
+                asignationProgramsReportDto.setId_programs(dataasugnation.getId_programs());
+                asignationProgramsReportDto.setId_activities(dataasugnation.getId_activities());
                 asignationProgramsReportDto.setName_programs(programsDto.getName());
                 asignationProgramsReportDto.setName_activities(activitiesDto.getName());
                 asignationProgramsReportDto.setDate_asignation(dataasugnation.getDate_asignation());
@@ -147,7 +150,7 @@ public class AsignationProgramsServiceImpl implements AsignationProgramsService 
         }
     }
 
-    public Flux<AsignationProgramsListDto> listarPorEstado(String active) {
+    public Flux<AsignationProgramsReportDto> listarPorEstado(String active) {
         Flux<AsignationPrograms> asignation = asignationProgramsRepository.findAll()
                 .sort(Comparator.comparing(AsignationPrograms::getId).reversed())
                 .filter((activ)-> activ.getActive().equals(active));
@@ -166,18 +169,22 @@ public class AsignationProgramsServiceImpl implements AsignationProgramsService 
             return programs.zipWith(activities).map(data ->{
                 ProgramsDto programsDto = data.getT1();
                 ActivitiesDto activitiesDto = data.getT2();
-                AsignationProgramsListDto asignationProgramsListDto = new AsignationProgramsListDto();
-                asignationProgramsListDto.setAsignationPrograms(dataasignation);
-                asignationProgramsListDto.setProgramsDto(programsDto);
-                asignationProgramsListDto.setActivitiesDto(activitiesDto);
-                return asignationProgramsListDto;
+                AsignationProgramsReportDto asignationProgramsReportDto = new AsignationProgramsReportDto();
+                asignationProgramsReportDto.setId(dataasignation.getId());
+                asignationProgramsReportDto.setId_programs(dataasignation.getId_programs());
+                asignationProgramsReportDto.setId_activities(dataasignation.getId_activities());
+                asignationProgramsReportDto.setName_programs(programsDto.getName());
+                asignationProgramsReportDto.setName_activities(activitiesDto.getName());
+                asignationProgramsReportDto.setDate_asignation(dataasignation.getDate_asignation());
+                asignationProgramsReportDto.setDirection(dataasignation.getDirection());
+                return asignationProgramsReportDto;
             });
         });
     }
 
-    public Mono<ResponseEntity<Resource>> exportAsignationReport() {
+    public Mono<ResponseEntity<Resource>> exportAsignationReport(String nameprograms) {
         Flux<AsignationProgramsReportDto> asignationReportDtoFlux = listAsignation().filter(programs ->
-            programs.getName_programs().equals("ADN")
+            programs.getName_programs().equals(nameprograms)
         );
 
         return asignationReportDtoFlux.collectList()
@@ -200,11 +207,12 @@ public class AsignationProgramsServiceImpl implements AsignationProgramsService 
 
         try {
             final File file = ResourceUtils.getFile("classpath:"+reportPath);
+            final File imgLogo = ResourceUtils.getFile("classpath:image/logo.png");
             final JasperReport report = (JasperReport) JRLoader.loadObject(file);
+            parameters.put("logo", new FileInputStream(imgLogo));
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, new JREmptyDataSource());
             byte[] reporte = JasperExportManager.exportReportToPdf(jasperPrint);
-
             StringBuilder stringBuilder = new StringBuilder().append("InvoicePDF:");
             ContentDisposition contentDisposition = ContentDisposition.builder("attachment")
                     .filename(stringBuilder.append(outputFileName).toString())

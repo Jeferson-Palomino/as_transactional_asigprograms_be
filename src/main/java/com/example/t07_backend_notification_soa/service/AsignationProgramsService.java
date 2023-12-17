@@ -15,5 +15,5 @@ public interface AsignationProgramsService {
     public Mono<ProgramsDto> validarPrograma(Integer id);
     public Mono<ActivitiesDto> validarActividades(Integer id);
 
-    Flux<AsignationProgramsListDto> listarPorEstado(String activo);
+    Flux<AsignationProgramsReportDto> listarPorEstado(String activo);
 }

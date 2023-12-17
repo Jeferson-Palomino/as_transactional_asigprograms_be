@@ -1,4 +1,6 @@
 
-y	java:S116"XRename this field "name_programs" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´éÎûÿÿÿÿ8„ª¨°Å1
-{	java:S116"ZRename this field "name_activities" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’ÑÈ©úÿÿÿÿ8…ª¨°Å1
-v	java:S116"ZRename this field "date_asignation" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³š¢â8…ª¨°Å1
+w	java:S116"VRename this field "id_programs" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—«çÏüÿÿÿÿ8ñ‹ÛÅ1
+y	java:S116"XRename this field "id_activities" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ˆ¯ÿÿÿÿÿ8ò‹ÛÅ1
+y	java:S116"XRename this field "name_programs" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´éÎûÿÿÿÿ8„ª¨°Å1
+{	java:S116"ZRename this field "name_activities" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’ÑÈ©úÿÿÿÿ8…ª¨°Å1
+v	java:S116"ZRename this field "date_asignation" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³š¢â8…ª¨°Å1

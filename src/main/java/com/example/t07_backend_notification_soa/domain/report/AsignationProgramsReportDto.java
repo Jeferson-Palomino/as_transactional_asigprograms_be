@@ -11,6 +11,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class AsignationProgramsReportDto {
     private Integer id;
+    private Integer id_programs;
+    private Integer id_activities;
     private String name_programs;
     private String name_activities;
     private LocalDate date_asignation;
